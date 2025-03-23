@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../../src/App";
+import App from "../App";
 import Home from "../pages/Home";
 import Gallery from "../pages/Gallery";
 import Albums from "../pages/Albums";
@@ -8,7 +8,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Protected from "./protected";
+import Protected from "./Protected";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminGallery from "../pages/Admin/AdminGallery";
 import AdminAlbums from "../pages/Admin/AdminAlbums";
