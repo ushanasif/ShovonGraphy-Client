@@ -37,12 +37,12 @@ const Navbar = () => {
                  <li className='menu-list'><Link to="/about">About Us</Link></li>
                  <li><Link to="/contact" className='menu-list'>Contact</Link></li>
               
-                {
-                   user &&   (<li  className='relative cursor-pointer' onClick={()=>setIsDropdown(!isDorpdown)}>
+                
+                   <li  className='relative cursor-pointer' onClick={()=>setIsDropdown(!isDorpdown)}>
                    <span><RiAdminFill className='size-10' /></span>
                   {
                      isDorpdown && (
-                      <ul className='bg-white text-black absolute rounded'>
+                      <ul className='bg-white text-black rounded absolute z-10'>
                         <li className='border-b border-gray-400 px-2 pr-3 py-1'><Link to="/admin/dashboard">Dashboard</Link></li>
                         
                         <li className='border-b border-gray-400 px-2 pr-3 py-1'><button onClick={handleLogout}>Logout</button></li>
@@ -50,8 +50,7 @@ const Navbar = () => {
                       </ul>
                      )
                   }
-                </li>)
-                }
+                </li>
 
               </ul>
         </div>
