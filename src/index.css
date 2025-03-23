@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menu-list{
+    @apply hover:text-amber-600 mb-1;
+}
+
+/* d8d2ca ede9e4  141618*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.my-font{
+    font-family: "Roboto Slab", sans-serif;
+}
+
+.myfont-thin{
+    font-weight: 300;
+}
+
+.hero-bg-image{
+    background: url("../src/assets/images/istockphoto-486091044-1024x1024.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(3px);
+}
+
+
+.swiper{
+    padding: 3rem;
+}
