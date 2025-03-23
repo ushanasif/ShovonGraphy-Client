@@ -1,47 +1,50 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
-import auth from "../firebase/firebase.config";
+
+
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../contextApi/AuthContextProvider";
 import { useImageFetchingContextHook } from "../contextApi/ImageFetchingProvider";
 
 
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const axios = useAxiosPublic();
     const navigate = useNavigate();
     const {setUser} = useContext(AuthContext);
     const {fetchAlbums} = useImageFetchingContextHook();
-    const handleGoogleLogin = async() => {
+
+    const handleSubmit = async(e) => {
+      e.preventDefault();
+
+      setLoading(true);
 
       try {
-        const provider = new GoogleAuthProvider();
-        const result = await signInWithPopup(auth, provider);
-        console.log(result.user.uid);
-        if(result && result.user.email === import.meta.env.VITE_ADMIN_EMAIL){
-            const res = await axios.post('/api/admin/login', {email: result.user.email, password: result.user.uid}, {withCredentials: true});
+        const res = await axios.post('/api/admin/login', {email, password}, {withCredentials: true});
 
-            if(res){
-              setUser(result?.user);
-              toast.success(res.data.message);
-              navigate('/admin/dashboard')
-            }else{
-                toast.error("Error from backend")
-            }
+        if(res){
+          toast.success(res.data.message);
+          navigate('/admin/dashboard');
+          setEmail('');
+          setPassword('');
         }else{
-          toast.error("Email not matched")
+            toast.error("Something went wrong. Try again later")
         }
-        
       } catch (error) {
-          console.log(error.message);
-          if(error.response){
-              toast.error(error.response.data.message)
-          }
+        console.log(error.message);
+        if(error.response){
+            toast.error(error.response.data.message)
+        }
+      }finally{
+          setLoading(false);
       }
-        
-    };
+  }
+
+   
 
     return (
       <div className="min-h-screen flex flex-col pb-16 sm:px-6 lg:px-8">
@@ -53,7 +56,7 @@ const Login = () => {
   
         <div className="sm:mx-auto sm:w-full sm:max-w-md drop-shadow-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="mb-2">
                 <label
                   htmlFor="email"
@@ -69,6 +72,7 @@ const Login = () => {
                     required
                     className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your email address"
+                    onChange={(e)=>setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -88,6 +92,7 @@ const Login = () => {
                     required
                     className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your password"
+                    onChange={(e)=> setPassword(e.target.value)}
                   />
                 </div>
               </div>
@@ -116,7 +121,6 @@ const Login = () => {
               <div className="mt-6">
                 <div className="">
                   <button
-                    onClick={handleGoogleLogin}
                     className="w-full flex gap-2 items-center justify-center px-8 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                   >
                     
