@@ -1,5 +1,5 @@
 
-import About from './About';
+import About from '../components/About';
 import Follow from '../components/Follow';
 import ImageGallery from '../components/Gallery';
 import Package from '../components/Package';
