@@ -1,7 +1,7 @@
 const ImageGallery = () => {
   return (
     <>
-      <div className="bg-black">
+      <div className="bg-black my-20">
         <div
           className="container mx-auto py-8 grid grid-cols-2 md:grid-cols-3 gap-4"
           data-aos="zoom-in-down"

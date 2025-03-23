@@ -24,9 +24,9 @@ const Navbar = () => {
   return (
     <>
 
-      <div className='w-full pt-3 top-0 z-50'>
+      <div className='bg-white w-full pt-3 top-0 z-50'>
         <div className='container mx-auto'>
-             <ul className='flex justify-center items-center gap-8 text-lg text-slate-700'>
+             <ul className='flex justify-center items-center gap-8 text-xl text-slate-700'>
                  <li className='menu-list'><Link to="/">Home</Link></li>
                  <li className='menu-list'><Link to="/gallery">Gallery</Link></li>
                  <li className='menu-list'><Link to="/albums">Albums</Link></li>

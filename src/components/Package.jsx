@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 const Package = () => {
   return (
     <>
-     <div className="w-full min-h-screen relative py-12">
+     <div className="w-full min-h-screen relative my-font py-12">
       {/* Section Title */}
       <div className="flex items-center px-6 md:px-20 lg:px-40 gap-4 justify-center mb-10">
         <div className="flex-grow border-t border-gray-400"></div>
-        <span className="mx-2 text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-gray-800 tracking-wider">
+        <span className="mx-2 text-2xl md:text-3xl lg:text-4xl uppercase text-gray-800 tracking-wider">
           Packages
         </span>
         <div className="flex-grow border-t border-gray-400"></div>

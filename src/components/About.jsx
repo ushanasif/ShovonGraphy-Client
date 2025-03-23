@@ -2,14 +2,14 @@ import loveImage from '../assets/images/calligraphy-red-double-heart-vectorart_7
 
 const About = () => {
   return (
-    <div className="min-h-screen pt-16 pb-32 px-20 text-black text-center my-5">
+    <div className="min-h-screen pt-16 pb-32 px-20 my-font text-black text-center my-5">
       <div className="mb-5 flex flex-col">
-          <span className='font-bold uppercase'>ShovonGraphy</span>
-          <span className='text-2xl font-bold'>PHOTOGRAPHY and CINEMATOGRAPHY</span>
+          <span className='uppercase'>ShovonGraphy</span>
+          <span className='text-2xl'>PHOTOGRAPHY and CINEMATOGRAPHY</span>
           
       </div>
 
-      <p className=" text-gray-950 text-[18px] leading-8 text-base font-light">
+      <p className=" text-gray-950 text-[18px] leading-8 text-base">
         {" "}
         we capture the magic of your wedding day with timeless, heartfelt
         photography. Our passion is telling love stories through stunning,

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,9 +14,9 @@
     box-sizing: border-box;
 }
 
-
 .my-font{
-    font-family: "Roboto Slab", sans-serif;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 500;
 }
 
 .myfont-thin{
