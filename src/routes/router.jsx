@@ -34,9 +34,9 @@ const router = createBrowserRouter([
       {
         path: "packages",
         element: (
-          <Protected>
+          
             <Packages />
-          </Protected>
+          
         ),
       },
       {
