@@ -17,7 +17,7 @@ const About = () => {
         wherever love takes you. Let’s create memories that last a lifetime!
         Let us be part of your journey and turn your wedding day into a visual masterpiece that tells your love story, frame by frame.
       </p>
-      <div className='w-2/3 mt-17 border-b border-black mx-auto'></div>
+      <div className='w-2/3 mt-16 border-b border-black mx-auto'></div>
       <div className='mx-auto'>
         {/* <img src={loveImage} alt="" className='mx-auto w-[500px] h-60' /> */}
       </div>
