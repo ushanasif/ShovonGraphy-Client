@@ -8,7 +8,6 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Protected from "./Protected";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminGallery from "../pages/Admin/AdminGallery";
 import AdminAlbums from "../pages/Admin/AdminAlbums";
@@ -61,7 +60,7 @@ const router = createBrowserRouter([
 
   {
     path: "/admin/dashboard",
-    element: (<Protected>    <AdminDashboard />     </Protected>),
+    element:    <AdminDashboard />,
     children: [
       {
         path: "",
