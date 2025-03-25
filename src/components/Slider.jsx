@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
-import img from "../assets/images/istockphoto-486091044-1024x1024.jpg";
+import img from "../assets/images/slider img.jpg";
 
 
 const Slider = () => {

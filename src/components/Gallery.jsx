@@ -1,4 +1,4 @@
-import img from '../assets/images/istockphoto-2160439321-1024x1024.jpg';
+import img from '../assets/images/slider img.jpg';
 
 const images = [img, img,img,img,img,img,img,img,img,]
 
