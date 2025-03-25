@@ -1,5 +1,6 @@
 
 import About from '../components/About';
+import Album from '../components/Album';
 import Follow from '../components/Follow';
 import ImageGallery from '../components/Gallery';
 import Package from '../components/Package';
@@ -12,6 +13,7 @@ const Home = () => {
     <>
       <Slider />
       <About />
+      <Album />
       <Package />
       <ImageGallery />
       <Follow />

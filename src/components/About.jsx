@@ -2,7 +2,7 @@ import loveImage from '../assets/images/calligraphy-red-double-heart-vectorart_7
 
 const About = () => {
   return (
-    <div className="bg-white min-h-screen pt-16 pb-32 px-12 my-font text-amber-700 text-center my-5">
+    <div className="bg-white h-auto pt-16 pb-16 px-12 my-font text-amber-700 text-center my-5">
       <div className="mb-5 flex flex-col">
           <span className='uppercase'>ShovonGraphy</span>
           <span className='text-2xl'>PHOTOGRAPHY and CINEMATOGRAPHY</span>
