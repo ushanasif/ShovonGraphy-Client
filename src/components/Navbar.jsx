@@ -105,9 +105,9 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-            <div className='lg:hidden w-1/2 md:w-1/3 min-h-screen bg-black text-center fixed top-0 right-0 z-50 '>
-              <div onClick={() => setIsMobileMenuOpen(false)} className='flex justify-end p-5'><RiCloseLine className='size-10 bg-white text-black'/></div> 
-                <ul className='flex flex-col w-full text-white py-4 space-y-4 shadow-lg'>
+            <div className='lg:hidden w-[60%] md:w-[40%] min-h-screen bg-black text-center fixed top-0 right-0 z-50 '>
+              <div onClick={() => setIsMobileMenuOpen(false)} className='flex justify-end p-5 transition-transform duration-300'><RiCloseLine className='size-10 bg-white text-black'/></div> 
+                <ul className='flex flex-col w-full text-white py-4 space-y-6 shadow-lg'>
                     
                     <li className='menu-list'><Link to='/' onClick={() => setIsMobileMenuOpen(false)}>Home</Link></li>
                     <li className='menu-list'><Link to='/gallery' onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link></li>
@@ -115,6 +115,7 @@ const Navbar = () => {
                     <li className='menu-list'><Link to='/packages' onClick={() => setIsMobileMenuOpen(false)}>Packages</Link></li>
                     <li className='menu-list'><Link to='/about' onClick={() => setIsMobileMenuOpen(false)}>About Us</Link></li>
                     <li className='menu-list'><Link to='/contact' onClick={() => setIsMobileMenuOpen(false)}>Contact</Link></li>
+                    <li className='menu-list'><Link to='/admin/login' onClick={() => setIsMobileMenuOpen(false)}>Login</Link></li>
                 </ul>
             </div>
       )}

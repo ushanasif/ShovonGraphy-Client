@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Outlet } from "react-router-dom";
@@ -13,7 +12,7 @@ const App = () => {
 
   return (
     <>
-      <div className="bg-[#FFFAFA] my-font">
+      <div className="my-font">
         <Navbar />
         <Outlet />
         <Footer />
