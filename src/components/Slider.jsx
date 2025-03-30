@@ -32,16 +32,16 @@ const Slider = () => {
 
       <div className="w-full min-h-screen">
         <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img}  alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
         </SwiperSlide>
 
         
