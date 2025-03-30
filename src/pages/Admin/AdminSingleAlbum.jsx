@@ -34,7 +34,7 @@ const AdminSingleAlbum = () => {
           }
 
           if (secure_url && public_id) {
-              const response = await axios.put('/api/album/add-single-album-images', data);
+              const response = await axios.put('/api/album/add-single-album-images', data, {withCredentials: true});
     
               if(response){
                   toast.success(response.data.message);
@@ -62,7 +62,7 @@ const AdminSingleAlbum = () => {
       const deleteImg = async(public_id) => {
     
         try {
-          const response = await axios.delete(`/api/album/delete-album-image/${public_id}`);
+          const response = await axios.delete(`/api/album/delete-album-image/${public_id}`, {withCredentials: true});
   
           if(response){
               toast.success(response.data.message);

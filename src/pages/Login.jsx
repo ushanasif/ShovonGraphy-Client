@@ -27,7 +27,7 @@ const Login = () => {
         const res = await axios.post('/api/admin/login', {email, password}, {withCredentials: true});
 
         if(res){
-          toast.success(res.data.message);
+          toast.success(res?.data?.message);
           navigate('/admin/dashboard');
           setEmail('');
           setPassword('');

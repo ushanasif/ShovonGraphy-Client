@@ -7,18 +7,36 @@ import { AuthContext } from "./AuthContextProvider";
 const ImageFetchingContext = createContext(null);
 
 const ImageFetchingProvider = ({children}) => {
+  const [sliderImages, setSliderImages] = useState([]);
   const [galleryData, setGalleryData] = useState([]);
   const [albumsData, setAlbumsData] = useState([]);
   const {user} = useContext(AuthContext);
   const axios = useAxiosPublic();
   
 
+  const fetchSlider = async() => {
+    try {
+      const response = await axios("/api/slider/get-slider");
+
+      if(response){
+          setSliderImages(response?.data?.sliderImages)
+      }else{
+        toast.error("Error from backend");
+      }
+  } catch (error) {
+    console.log(error.message);
+    if(error.response){
+      toast.error(error.response.data.message);
+      }
+  }
+  }
+
   const getGalleryData = async () => {
     try {
-        const response = await axios("/api/gallery/get-gallery", {withCredentials: true});
+        const response = await axios("/api/gallery/get-gallery");
 
         if(response){
-            setGalleryData(response.data.galleryData)
+            setGalleryData(response?.data?.galleryData)
         }else{
           toast.error("Error from backend");
         }
@@ -32,7 +50,7 @@ const ImageFetchingProvider = ({children}) => {
 
   const fetchAlbums = async() => {
     try {
-      const response = await axios('/api/album/get-albums', {withCredentials: true});
+      const response = await axios('/api/album/get-albums');
 
       if(response){
             setAlbumsData(response?.data?.payload)
@@ -48,14 +66,13 @@ const ImageFetchingProvider = ({children}) => {
   }
 
   useEffect(()=>{
-    if (user) {  // Ensure user is logged in before fetching
+      fetchSlider();
       getGalleryData();
       fetchAlbums();
-    }
-  }, [user]);
+  }, []);
   
   return (
-    <ImageFetchingContext.Provider value={{getGalleryData, galleryData, fetchAlbums, albumsData}}>
+    <ImageFetchingContext.Provider value={{sliderImages, galleryData, albumsData, fetchSlider, getGalleryData, fetchAlbums}}>
         {children}
     </ImageFetchingContext.Provider>
   )
@@ -64,4 +81,5 @@ const ImageFetchingProvider = ({children}) => {
 export const useImageFetchingContextHook = () => {
     return useContext(ImageFetchingContext);
 }
+
 export default ImageFetchingProvider;

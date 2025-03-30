@@ -1,8 +1,8 @@
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import axios from "axios";
 
-const axios = useAxiosPublic();
 
 const uploadFileToCloudinary = async (img) => {
+  
     const formData = new FormData();
     formData.append("file", img);
     formData.append("upload_preset", "image_preset");
@@ -21,5 +21,5 @@ const uploadFileToCloudinary = async (img) => {
     }
   };
 
-
-  export default uploadFileToCloudinary;
+export default uploadFileToCloudinary;
+  

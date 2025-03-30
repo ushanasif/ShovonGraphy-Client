@@ -62,7 +62,7 @@ const Navbar = () => {
         </div>
       </nav>  */}
     
-    <nav className='bg-white w-full pt-3 top-0 z-50 shadow-md'>
+    <nav className='bg-white w-full pt-3 top-0 z-50 shadow-sm'>
       <div className='container mx-auto flex justify-between items-center px-4 md:px-8'>
         <Link to='/'>
           <img src={logoGolden} alt='shovongraphy' className='w-40 h-20 md:w-60 md:h-32' />
@@ -88,7 +88,7 @@ const Navbar = () => {
           <li className='relative cursor-pointer' onClick={() => setIsDropdown(!isDropdown)}>
             <RiAdminFill className='size-10' />
             {isDropdown && (
-              <ul className='bg-black rounded absolute z-10 right-0 mt-2 shadow-lg w-40'>
+              <ul className='bg-black text-white rounded absolute z-10 right-0 mt-2 shadow-lg w-40'>
                 {user ? (
                   <>
                     <li className='border-b border-gray-400 px-4 py-2'><Link to='/admin/dashboard'>Dashboard</Link></li>

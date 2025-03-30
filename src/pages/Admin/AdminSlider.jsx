@@ -5,16 +5,15 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useImageFetchingContextHook } from "../../contextApi/ImageFetchingProvider";
 import uploadFileToCloudinary from "../../helpers/uploadFileToCloudinary";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { AuthContext } from "../../contextApi/AuthContextProvider";
 
-const AdminGallery = () => {
+
+const AdminSlider = () => {
   const [img, setImg] = useState("");
   const imgInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const axios = useAxiosPublic();
-  const {fetchAdminDetails} = useContext(AuthContext);
-  const {galleryData} = useImageFetchingContextHook();
-  console.log(galleryData);
+  const {sliderImages, fetchSlider} = useImageFetchingContextHook();
+  console.log(sliderImages);
 
 
   const handleUpload = async (e) => {
@@ -25,16 +24,16 @@ const AdminGallery = () => {
       console.log(secure_url, public_id);
 
       if (secure_url && public_id) {
-          const response = await axios.post('/api/gallery/store-gallery', {public_id, imgUrl: secure_url});
+          const response = await axios.post('/api/slider/add-slider', {public_id, imgUrl: secure_url}, {withCredentials:true});
 
           if(response){
               toast.success(response.data.message);
-              fetchAdminDetails();
               setLoading(false);
               setImg(null);
               if (imgInputRef.current) {
                 imgInputRef.current.value = ""; // Clear the file input field
               }
+              fetchSlider();
           }
       } else {
         toast.error("Data could not be added to mongodb");
@@ -52,11 +51,11 @@ const AdminGallery = () => {
   const deleteImg = async(public_id) => {
     
       try {
-        const response = await axios.delete(`/api/gallery/delete-gallery-img/${public_id}`);
+        const response = await axios.delete(`/api/slider/delete-slider-img/${public_id}`, {withCredentials: true});
 
         if(response){
             toast.success(response.data.message);
-            getGalleryData();
+            sliderImages();
         }else{
             toast.error(response.data.message);
         }
@@ -72,7 +71,7 @@ const AdminGallery = () => {
     <>
       <div className="mt-16 ml-52 pt-7 pb-40">
         <div className="grid grid-cols-5 gap-5">
-          {galleryData?.map((val) => (
+          {sliderImages?.map((val) => (
             <div key={val._id} className="relative shadow-md">
               <img src={val.imgUrl} alt="img" className="" />
               <button onClick={()=>{deleteImg(val.public_id)}} className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
@@ -119,4 +118,4 @@ const AdminGallery = () => {
   );
 };
 
-export default AdminGallery;
+export default AdminSlider;

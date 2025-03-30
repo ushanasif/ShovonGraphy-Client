@@ -29,7 +29,8 @@ const AdminAlbums = () => {
                     albumName,
                     coverImg: {public_id, imgUrl: secure_url}
               }
-              const response = await axios.post('/api/album/create-album', data);
+              setIsModalOpen(true)
+              const response = await axios.post('/api/album/create-album', data, {withCredentials: true});
     
               if(response){
                   toast.success(response.data.message);
@@ -39,7 +40,9 @@ const AdminAlbums = () => {
                   if (imgInputRef.current) {
                     imgInputRef.current.value = ""; // Clear the file input field
                   }
+                  setIsModalOpen(false);
                   fetchAlbums();
+                  
               }
           } else {
             toast.error("Data could not be added to mongodb");
@@ -60,7 +63,7 @@ const AdminAlbums = () => {
       const publicIds = [album.coverImg.public_id, ...album.albumImages.map(val => val.public_id)];
 
       try {
-          const response = await axios.delete(`/api/album/delete-album/${id}`, {publicIds});
+          const response = await axios.delete(`/api/album/delete-album/${id}`, {publicIds}, {withCredentials: true});
 
           if(response){
               toast.success(response.data.message)

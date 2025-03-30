@@ -13,6 +13,7 @@ import AdminGallery from "../pages/Admin/AdminGallery";
 import AdminAlbums from "../pages/Admin/AdminAlbums";
 import AdminSingleAlbum from "../pages/Admin/AdminSingleAlbum";
 import AdminPackage from "../pages/Admin/AdminPackage";
+import AdminSlider from "../pages/Admin/AdminSlider";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +64,12 @@ const router = createBrowserRouter([
     element:    <AdminDashboard />,
     children: [
       {
-        path: "",
+        path: "gallery",
         element: <AdminGallery />,
+      },
+      {
+          path: 'slider',
+          element: <AdminSlider />
       },
       {
         path: "albums",
