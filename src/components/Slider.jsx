@@ -9,7 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-
+import img from '../assets/images/slider img.jpg';
 import { useImageFetchingContextHook } from "../contextApi/ImageFetchingProvider";
 
 
@@ -32,16 +32,16 @@ const Slider = () => {
 
       <div className="w-full min-h-screen">
         <SwiperSlide>
-            <img src={sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={sliderImages[1]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={sliderImages[2]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
         </SwiperSlide>
         <SwiperSlide>
-            <img src={sliderImages[3]?.imgUrl} alt="" className="w-full object-cover" />
+            <img src={import.meta.env.MODE === 'development' ? img : sliderImages[0]?.imgUrl} alt="" className="w-full object-cover" />
         </SwiperSlide>
 
         
