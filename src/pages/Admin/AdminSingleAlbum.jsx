@@ -1,6 +1,6 @@
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useLocation, useParams } from "react-router-dom"
-import image from "../../assets/images/istockphoto-2160439321-1024x1024.jpg"
+import { useParams } from "react-router-dom"
+
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { useRef, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
