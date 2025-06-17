@@ -66,8 +66,8 @@ const Navbar = () => {
         </div>
       </nav>  */}
     
-    <nav className='bg-white w-full top-0 z-50 shadow-sm'>
-      <div className='container mx-auto flex gap-32 items-center px-4 md:px-8'>
+    <nav className='bg-white w-full top-0 z-50 shadow-sm py-8'>
+      <div className='container mx-auto flex justify-around gap-32 items-center px-4 md:px-8'>
         <Link to='/'>
           <img src={logoGolden} alt='shovongraphy' className='w-40 h-20 md:w-60 md:h-20' />
         </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Menu */}
-        <ul className='hidden font-playfair tracking-widest lg:flex lg:items-center lg:gap-8 text-lg'>
+        <ul className='hidden tracking-widest lg:flex lg:items-center lg:gap-8 font-thin text-[2px]'>
           <li className='menu-list'><Link to='/'>Home</Link></li>
           <li className='menu-list'><Link to='/gallery'>Gallery</Link></li>
           <li className='menu-list'><Link to='/albums'>Albums</Link></li>
@@ -89,17 +89,17 @@ const Navbar = () => {
           <li className='menu-list'><Link to='/about'>About Us</Link></li>
           <li className='menu-list'><Link to='/contact'>Contact</Link></li>
 
-          <li className='relative cursor-pointer ml-20' onClick={() => setIsDropdown(!isDropdown)}>
-            <RiAdminFill className='size-10' />
+          <li className='relative cursor-pointer' onClick={() => setIsDropdown(!isDropdown)}>
+            <RiAdminFill className='size-7' />
             {isDropdown && (
-              <ul className='bg-black text-white rounded absolute z-10 right-0 mt-2 shadow-lg w-40'>
+              <ul className='bg-black text-white rounded absolute z-10 right-0 shadow-lg w-40'>
                 {user ? (
                   <>
                     <li className='border-b border-gray-400 px-4 py-2'><Link to='/admin/dashboard'>Dashboard</Link></li>
                     <li className='px-4 py-2'><button onClick={logout}>Logout</button></li>
                   </>
                 ) : (
-                  <li className='px-4 py-2 text-white'><Link to='/admin/login'>Login</Link></li>
+                  <li className='px-4 py-3 text-white text-xl'><Link to='/admin/login'>Login</Link></li>
                 )}
               </ul>
             )}

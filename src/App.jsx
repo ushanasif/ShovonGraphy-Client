@@ -12,7 +12,7 @@ const App = () => {
 
   return (
     <>
-      <div className="font-playfair">
+      <div className="">
         <Navbar />
         <Outlet />
         <Footer />

@@ -36,8 +36,8 @@ const Slider = () => {
         {
             sliderImages?.map((val, i) => (
               
-                    <SwiperSlide key={i} className="w-full h-full">
-              <img src={import.meta.env.MODE === 'development' ? val?.imgUrl : img}  alt="" className="w-full h-full object-cover md:object-cover" />
+            <SwiperSlide key={i} className="w-full h-full">
+              <img src={val.imgUrl}  alt="" className="w-full h-full object-cover md:object-cover" />
             </SwiperSlide>
               
             ))

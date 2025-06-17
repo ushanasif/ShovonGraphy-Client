@@ -24,26 +24,16 @@ const About = () => {
     // </div>
 
     <>
-    <div className="bg-[#f7f1f1] py-32 container mx-auto mt-16">
-      <div className="w-full h-screen flex items-center gap-10">
-        <div className="pl-36 pr-10">
-          <img
-            src={img}
-            alt="image"
-            className=" h-[30rem] object-cover"
-          />
-        </div>
-
-        <div className="w-[0.5px] h-full bg-black"></div>
-
-        <div className="flex flex-col gap-10 items-center w-[80%] pr-32">
-          <div className="text-center">
-            <p className="font-bold italic">ShovonGraphy</p>
-            <p className="text-3xl tracking-widest">Exclusive Cinematography & Photography</p>
+    <div className="min-h-screen container mx-auto mt-16">
+      <div className="w-full flex px-8">
+        <div className="flex flex-col gap-10 items-center basis-[48%] pr-12">
+          <div className="text-left">
+            <p className="font-bold italic text-xl text-[#c7a873]">ShovonGraphy</p>
+            <p className="text-4xl tracking-widest">Exclusive Photography & Cinematography </p>
           </div>
 
           <div>
-            <p className="text-justify">
+            <p className="text-justify text-[18px] leading-8 tracking-wider font-thin">
               we capture the magic of your wedding day with timeless, heartfelt
               photography. Our passion is telling love stories through stunning,
               natural imagery, preserving every smile, tear, and joyful moment.
@@ -54,8 +44,15 @@ const About = () => {
             </p>
           </div>
         </div>
+
+        <div className="basis-[48%] pl-12">
+          <img
+            src={img}
+            alt="image"
+            className="h-[30rem] object-cover"
+          />
+        </div>
       </div>
-    
     </div>
     </>
   );

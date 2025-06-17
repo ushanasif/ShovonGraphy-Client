@@ -4,7 +4,7 @@ import img2 from '../assets/images/slider img.jpg'
 
 const ImageCollage = () => {
   return (
-    <div className="bg-[#d8d2ca] w-full h-screen px-32 py-16 mb-12 container mx-auto">
+    <div className="bg-[#faf7f2] w-full h-screen px-32 py-16 mb-12 container mx-auto">
         <div className="flex gap-20 h-full">
             
             <div className="basis-[45%]">
