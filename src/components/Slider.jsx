@@ -37,7 +37,7 @@ const Slider = () => {
             sliderImages?.map((val, i) => (
               
             <SwiperSlide key={i} className="w-full h-full">
-              <img src={val.imgUrl}  alt="" className="w-full h-full object-cover md:object-cover" />
+              <img src={val?.imgUrl}  alt="" className="w-full h-full object-cover md:object-cover" />
             </SwiperSlide>
               
             ))
