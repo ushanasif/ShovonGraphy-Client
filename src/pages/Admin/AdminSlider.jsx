@@ -28,7 +28,6 @@ const AdminSlider = () => {
 
           if(response){
               toast.success(response.data.message);
-              setLoading(false);
               setImg(null);
               if (imgInputRef.current) {
                 imgInputRef.current.value = ""; // Clear the file input field
@@ -37,14 +36,15 @@ const AdminSlider = () => {
           }
       } else {
         toast.error("Data could not be added to mongodb");
-        setLoading(false);
+        
       }
     } catch (error) {
       console.log(error.message);
-      setLoading(false);
       if(error.response){
           toast.error(error.response.data.message);
       }
+    }finally{
+        setLoading(false);
     }
   };
 
@@ -54,10 +54,10 @@ const AdminSlider = () => {
         const response = await axios.delete(`/api/slider/delete-slider-img/${public_id}`, {withCredentials: true});
 
         if(response){
-            toast.success(response.data.message);
-            sliderImages();
+            toast.success(response?.data?.message);
+            fetchSlider();
         }else{
-            toast.error(response.data.message);
+            toast.error(response?.data?.message);
         }
       } catch (error) {
           console.log(error.message);
@@ -69,23 +69,23 @@ const AdminSlider = () => {
 
   return (
     <>
-      <div className="mt-16 ml-52 pt-7 pb-40">
-        <div className="grid grid-cols-5 gap-5">
-          {sliderImages?.map((val) => (
-            <div key={val._id} className="relative shadow-md">
-              <img src={val.imgUrl} alt="img" className="" />
-              <button onClick={()=>{deleteImg(val.public_id)}} className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
+      <div className="bg-slate-100 w-full h-screen px-20 pt-4 pb-40">
+        <h1 className="text-center text-4xl py-10"><span className="border-b-4 border-gray-400">Gallery Images</span></h1>
+        <div className="grid grid-cols-4 gap-5">
+          {/* {sliderImages?.map((val) => (
+            <div key={val._id} className="w-full h-full relative shadow-sm">
+              <img src={val.imgUrl} alt="img" className="w-full h-full" />
+              <button onClick={()=>{deleteImg(val?.public_id)}} className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
             </div>
-          ))}
-
+          ))} */}
           {
-            img && (
-                <div>
-                    <img src={img} alt="img" />
-                </div>
-            )
+              sliderImages?.map((val) => (
+                  <div key={val?._id} className="h-full">
+                      <img src={val?.imgUrl} alt="Slider" className="w-full h-full" />
+                  </div>
+              ))
           }
-          <div className="flex justify-center items-center rounded shadow-md px-3">
+          <div className="flex justify-center items-center rounded shadow-md px-6 py-8 border border-dashed border-black">
             <form onSubmit={handleUpload} className="text-center">
               <label
                 htmlFor="upload"
@@ -104,12 +104,12 @@ const AdminSlider = () => {
                 onChange={(e) => setImg(e.target.files[0])}
               />
 
-              <button
+              {img && <button
                 type="submit"
                 className="bg-blue-500 text-white mx-auto px-3 py-1 mt-4 rounded-md hover:bg-gray-400"
               >
                 Upload
-              </button>
+              </button>}
             </form>
           </div>
         </div>

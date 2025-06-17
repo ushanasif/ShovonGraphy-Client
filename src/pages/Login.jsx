@@ -1,50 +1,30 @@
-
-
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contextApi/AuthContextProvider";
-import { useImageFetchingContextHook } from "../contextApi/ImageFetchingProvider";
-
 
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const axios = useAxiosPublic();
     const navigate = useNavigate();
-    const {setUser} = useContext(AuthContext);
-    const {fetchAlbums} = useImageFetchingContextHook();
+    const {handleLogin} = useContext(AuthContext);
 
     const handleSubmit = async(e) => {
       e.preventDefault();
+      const data = {email, password};
 
-      setLoading(true);
-
-      try {
-        const res = await axios.post('/api/admin/login', {email, password}, {withCredentials: true});
-
-        if(res){
-          toast.success(res?.data?.message);
+      const success = await handleLogin(data);
+      if(success){
+          toast.success("Login successful")
           navigate('/admin/dashboard');
-          setEmail('');
-          setPassword('');
-        }else{
-            toast.error("Something went wrong. Try again later")
-        }
-      } catch (error) {
-        console.log(error.message);
-        if(error.response){
-            toast.error(error.response.data.message)
-        }
-      }finally{
-          setLoading(false);
+          setEmail("");
+          setPassword("");
+      }else{
+          navigate('/admin/login');
+          toast.error('Login failed');
       }
   }
-
-   
 
     return (
       <div className="min-h-screen flex flex-col pb-16 sm:px-6 lg:px-8">

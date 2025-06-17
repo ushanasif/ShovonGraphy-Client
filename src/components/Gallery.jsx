@@ -1,14 +1,15 @@
-import img from '../assets/images/slider img.jpg';
 
-const images = [img, img,img,img,img,img,img,img,img,]
+import { useImageFetchingContextHook } from '../contextApi/ImageFetchingProvider';
 
 const ImageGallery = () => {
+  const {galleryData} = useImageFetchingContextHook();
+  
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
-      {images.map((src, index) => (
+    <div className="bg-black grid grid-cols-4 gap-2 p-4">
+      {galleryData?.slice(0,12).map((src, index) => (
         <img
           key={index}
-          src={src}
+          src={src.imgUrl}
           alt={`Gallery ${index + 1}`}
           className="w-full h-auto hover:scale-105 transition-transform"
         />

@@ -37,7 +37,7 @@ const AdminSingleAlbum = () => {
               const response = await axios.put('/api/album/add-single-album-images', data, {withCredentials: true});
     
               if(response){
-                  toast.success(response.data.message);
+                  toast.success(response?.data?.message);
                   setLoading(false);
                   setImg(null);
                   if (imgInputRef.current) {
@@ -65,7 +65,7 @@ const AdminSingleAlbum = () => {
           const response = await axios.delete(`/api/album/delete-album-image/${public_id}`, {withCredentials: true});
   
           if(response){
-              toast.success(response.data.message);
+              toast.success(response?.data?.message);
               fetchAlbums();
           }else{
               toast.error(response.data.message);
@@ -87,7 +87,7 @@ const AdminSingleAlbum = () => {
                         filterData && filterData.albumImages.map((val) => (
                           <div key={val._id} className="relative shadow-md">
                           <img src={val.imgUrl} alt="img" className="" />
-                          <button onClick={()=>{deleteImg(val.public_id)}}  className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
+                          <button onClick={()=>{deleteImg(val?.public_id)}}  className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
                       </div>
                         ))
                     }

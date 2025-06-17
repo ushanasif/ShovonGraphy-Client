@@ -3,7 +3,6 @@ import App from "../App";
 import Home from "../pages/Home";
 import Gallery from "../pages/Gallery";
 import Albums from "../pages/Albums";
-import Packages from "../pages/Packages";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Login from "../pages/Login";
@@ -14,6 +13,7 @@ import AdminAlbums from "../pages/Admin/AdminAlbums";
 import AdminSingleAlbum from "../pages/Admin/AdminSingleAlbum";
 import AdminPackage from "../pages/Admin/AdminPackage";
 import AdminSlider from "../pages/Admin/AdminSlider";
+import Package from "../components/Package";
 
 const router = createBrowserRouter([
   {
@@ -33,12 +33,12 @@ const router = createBrowserRouter([
         element: <Albums />,
       },
       {
+        path: "albums/:id",
+        element: <AdminSingleAlbum />,
+      },
+      {
         path: "packages",
-        element: (
-          
-            <Packages />
-          
-        ),
+        element: <Package />,
       },
       {
         path: "about",
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
 
   {
     path: "/admin/dashboard",
-    element:    <AdminDashboard />,
+    element:   <AdminDashboard />,
     children: [
       {
         path: "gallery",

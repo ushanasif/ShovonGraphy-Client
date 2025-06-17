@@ -1,8 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { AuthContext } from "./AuthContextProvider";
-
 
 const ImageFetchingContext = createContext(null);
 
@@ -10,7 +8,6 @@ const ImageFetchingProvider = ({children}) => {
   const [sliderImages, setSliderImages] = useState([]);
   const [galleryData, setGalleryData] = useState([]);
   const [albumsData, setAlbumsData] = useState([]);
-  const {user} = useContext(AuthContext);
   const axios = useAxiosPublic();
   
 
@@ -21,15 +18,12 @@ const ImageFetchingProvider = ({children}) => {
       if(response){
           setSliderImages(response?.data?.sliderImages)
       }else{
-        toast.error("Error from backend");
+        console.log("error from backend!");
       }
   } catch (error) {
     console.log(error.message);
-    if(error.response){
-      toast.error(error.response.data.message);
-      }
   }
-  }
+}
 
   const getGalleryData = async () => {
     try {
@@ -42,9 +36,6 @@ const ImageFetchingProvider = ({children}) => {
         }
     } catch (error) {
       console.log(error.message);
-      if(error.response){
-        toast.error(error.response.data.message);
-        }
     }
   };
 
@@ -59,9 +50,6 @@ const ImageFetchingProvider = ({children}) => {
         }
     } catch (error) {
         console.log(error.message);
-        if(error.response){
-            console.log(error.response.data.message);
-        }
     }
   }
 

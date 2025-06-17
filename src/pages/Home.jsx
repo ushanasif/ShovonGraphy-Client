@@ -3,7 +3,7 @@ import About from '../components/About';
 import Album from '../components/Album';
 import Follow from '../components/Follow';
 import ImageGallery from '../components/Gallery';
-import Package from '../components/Package';
+import ImageCollage from '../components/ImageCollage';
 import Slider from '../components/Slider';
 
 
@@ -14,7 +14,7 @@ const Home = () => {
       <Slider />
       <About />
       <Album />
-      <Package />
+      <ImageCollage />
       <ImageGallery />
       <Follow />
     </>

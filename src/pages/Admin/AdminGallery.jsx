@@ -9,11 +9,12 @@ import { AuthContext } from "../../contextApi/AuthContextProvider";
 
 const AdminGallery = () => {
   const [img, setImg] = useState("");
+  console.log(img);
   const imgInputRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const axios = useAxiosPublic();
   const {fetchAdminDetails} = useContext(AuthContext);
-  const {galleryData} = useImageFetchingContextHook();
+  const {galleryData, getGalleryData} = useImageFetchingContextHook();
   console.log(galleryData);
 
 
@@ -25,37 +26,40 @@ const AdminGallery = () => {
       console.log(secure_url, public_id);
 
       if (secure_url && public_id) {
-          const response = await axios.post('/api/gallery/store-gallery', {public_id, imgUrl: secure_url});
+          const response = await axios.post('/api/gallery/store-gallery', {public_id, imgUrl: secure_url}, {withCredentials: true});
 
           if(response){
               toast.success(response.data.message);
               fetchAdminDetails();
-              setLoading(false);
               setImg(null);
               if (imgInputRef.current) {
                 imgInputRef.current.value = ""; // Clear the file input field
               }
+              getGalleryData();
+
           }
       } else {
         toast.error("Data could not be added to mongodb");
-        setLoading(false);
+        
       }
     } catch (error) {
       console.log(error.message);
-      setLoading(false);
+     
       if(error.response){
           toast.error(error.response.data.message);
       }
+    }finally{
+        setLoading(false);
     }
   };
 
   const deleteImg = async(public_id) => {
     
       try {
-        const response = await axios.delete(`/api/gallery/delete-gallery-img/${public_id}`);
+        const response = await axios.delete(`/api/gallery/delete-gallery-img/${public_id}`, {withCredentials: true});
 
         if(response){
-            toast.success(response.data.message);
+            toast.success(response?.data?.message);
             getGalleryData();
         }else{
             toast.error(response.data.message);
@@ -70,23 +74,16 @@ const AdminGallery = () => {
 
   return (
     <>
-      <div className="mt-16 ml-52 pt-7 pb-40">
-        <div className="grid grid-cols-5 gap-5">
+      <div className="bg-slate-100 w-full h-screen px-10 pt-7 pb-40">
+        <div className="h-full grid grid-cols-5 gap-5">
           {galleryData?.map((val) => (
-            <div key={val._id} className="relative shadow-md">
-              <img src={val.imgUrl} alt="img" className="" />
-              <button onClick={()=>{deleteImg(val.public_id)}} className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
+            <div key={val?._id} className="relative shadow-md">
+              <img src={val?.imgUrl} alt="img" className="w-full h-full" />
+              <button onClick={()=>{deleteImg(val?.public_id)}} className="absolute top-2 right-2 rounded-full"><RiDeleteBin6Line className="size-6 text-red-500"/></button>
             </div>
           ))}
 
-          {
-            img && (
-                <div>
-                    <img src={img} alt="img" />
-                </div>
-            )
-          }
-          <div className="flex justify-center items-center rounded shadow-md px-3">
+          <div className="flex justify-center items-center rounded shadow-md px-6 py-8 border border-dashed border-black">
             <form onSubmit={handleUpload} className="text-center">
               <label
                 htmlFor="upload"
@@ -105,12 +102,14 @@ const AdminGallery = () => {
                 onChange={(e) => setImg(e.target.files[0])}
               />
 
-              <button
-                type="submit"
-                className="bg-blue-500 text-white mx-auto px-3 py-1 mt-4 rounded-md hover:bg-gray-400"
-              >
-                Upload
-              </button>
+              {
+                  img && <button
+                  type="submit"
+                  className="bg-blue-500 text-white mx-auto px-3 py-1 mt-4 rounded-md hover:bg-gray-400"
+                >
+                  Upload
+                </button>
+              }
             </form>
           </div>
         </div>

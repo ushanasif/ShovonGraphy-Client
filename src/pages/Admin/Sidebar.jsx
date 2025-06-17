@@ -9,7 +9,7 @@ import homeIcon from "../../assets/images/270-2701410_icon-with-a-blue-house-hom
 const Sidebar = () => {
   return (
     <>
-      <div className="w-[15%] bg-black text-white px-5">
+      <div className="w-[15%] h-screen bg-black text-white px-5 fixed">
           <div className="flex items-center justify-center gap-3 pt-8">
               <span><LuLayoutDashboard className="size-6" /></span>
               <span className="text-lg">Dashboard</span>

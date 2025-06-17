@@ -17,7 +17,7 @@ const Slider = () => {
   const {sliderImages} = useImageFetchingContextHook();
   console.log(sliderImages);
   return (
-    <div className="px-5">
+    <div className="w-full h-screen">
     <Swiper
       modules={[Navigation, Autoplay, Pagination]}
       spaceBetween={0}
@@ -25,27 +25,26 @@ const Slider = () => {
       loop={true}
       autoplay={{delay: 3000, pauseOnMouseEnter: true}}
       speed={2000}
+      className="w-full h-full"
     >
      
             
       
 
-      <div className="w-full min-h-screen">
-        <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img}  alt="" className="w-full object-cover" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
-        </SwiperSlide>
-        <SwiperSlide>
-            <img src={import.meta.env.MODE === 'development' ? sliderImages[0]?.imgUrl : img} alt="" className="w-full object-cover" />
-        </SwiperSlide>
+      
+        
+        {
+            sliderImages?.map((val, i) => (
+              
+                    <SwiperSlide key={i} className="w-full h-full">
+              <img src={import.meta.env.MODE === 'development' ? val?.imgUrl : img}  alt="" className="w-full h-full object-cover md:object-cover" />
+            </SwiperSlide>
+              
+            ))
+        }
 
         
-        </div>
+        
     </Swiper>
     </div>
   );

@@ -1,32 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-.menu-list{
-    @apply hover:text-amber-600 mb-1 text-xl myfont-thin;
+@layer components{
+    .menu-list{
+        @apply hover:text-[#b48b3c] mb-1 text-xl;
+    }
 }
 
-/* d8d2ca ede9e4  141618  ca786c b48b3c*/
+/* d8d2ca ede9e4  141618  ca786c b48b3c f7f1f1*/
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-.my-font{
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-}
-
-.myfont-thin{
-    font-weight: 400; 
-}
-
-.my-color{
-    color: #d8d2ca;
 }
 
 .hero-bg-image{

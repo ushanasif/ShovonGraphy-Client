@@ -7,8 +7,12 @@ export default {
   theme: {
     extend: {
        fontFamily:{
-          regular: ["Regular"],
+          raleway: ["Raleway", 'sans-serif'],
+          roboto: ["Roboto", 'sans-serif'],
+          playfair: ["Playfair Display", 'sans-serif'],
+          robotoslab: ["Roboto Slab", 'serif']
        }
+       
     },
   },
   plugins: [],
