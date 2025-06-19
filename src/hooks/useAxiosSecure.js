@@ -68,7 +68,6 @@ apiSecure.interceptors.response.use(
         return apiSecure(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-        handle // Optionally log out user
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
