@@ -16,6 +16,7 @@ export const getAccessToken = () => {
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  console.log('user', user);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const axios = useAxiosPublic();
