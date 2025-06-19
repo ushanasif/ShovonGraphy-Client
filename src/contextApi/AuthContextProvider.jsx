@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children }) => {
 
   const refreshAccessToken = async () => {
     try {
-      const response = await axios.post("/api/admin/refresh-token", {
+      const response = await axios.get("/api/admin/refresh-token", {
         withCredentials: true,
       });
       if (response?.status === 200) {
