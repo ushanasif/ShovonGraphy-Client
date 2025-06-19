@@ -72,6 +72,8 @@ const AuthContextProvider = ({ children }) => {
         await handleLogout();
       }
       return null;
+    }finally{
+      isLoading(false);
     }
   };
 
