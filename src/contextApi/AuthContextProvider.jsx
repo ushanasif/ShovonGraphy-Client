@@ -72,7 +72,7 @@ const AuthContextProvider = ({ children }) => {
       if (error.response.status === 401) {
         await handleLogout();
       }
-      return null;
+      console.log('Error', error.message)
     }finally{
       setLoading(false);
     }
