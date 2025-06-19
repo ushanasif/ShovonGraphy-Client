@@ -93,7 +93,7 @@ const Navbar = () => {
             <RiAdminFill className='size-7' />
             {isDropdown && (
               <ul className='bg-black text-white rounded absolute z-10 right-0 shadow-lg w-40'>
-                {user ? (
+                {isLoggedIn ? (
                   <>
                     <li className='border-b border-gray-400 px-4 py-3 text-xl'><Link to='/admin/dashboard'>Dashboard</Link></li>
                     <li className='px-4 py-3 text-xl'><button onClick={logout}>Logout</button></li>
