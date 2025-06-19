@@ -66,6 +66,7 @@ const AuthContextProvider = ({ children }) => {
       if (response?.status === 200) {
         setAccessToken(response?.data?.accessToken);
         setIsLoggedIn(true);
+        console.log(response?.data?.accessToken);
       }
     } catch (error) {
       if (error.response.status === 401) {

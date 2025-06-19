@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '../contextApi/AuthContextProvider'
 import {Navigate, useLocation} from 'react-router-dom'
 
 const Protected = ({children}) => {
     const {isLoggedIn, loading} = useContext(AuthContext);
+    console.log(isLoggedIn);
     const location = useLocation();
 
     if(!isLoggedIn && loading){
