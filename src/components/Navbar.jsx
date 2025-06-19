@@ -81,7 +81,7 @@ const Navbar = () => {
         </button>
 
         {/* Desktop Menu */}
-        <ul className='hidden tracking-widest lg:flex lg:items-center lg:gap-8 font-thin text-[2px]'>
+        <ul className='hidden tracking-widest lg:flex lg:items-center lg:gap-8 font-light'>
           <li className='menu-list'><Link to='/'>Home</Link></li>
           <li className='menu-list'><Link to='/gallery'>Gallery</Link></li>
           <li className='menu-list'><Link to='/albums'>Albums</Link></li>
@@ -95,8 +95,8 @@ const Navbar = () => {
               <ul className='bg-black text-white rounded absolute z-10 right-0 shadow-lg w-40'>
                 {user ? (
                   <>
-                    <li className='border-b border-gray-400 px-4 py-2'><Link to='/admin/dashboard'>Dashboard</Link></li>
-                    <li className='px-4 py-2'><button onClick={logout}>Logout</button></li>
+                    <li className='border-b border-gray-400 px-4 py-3 text-xl'><Link to='/admin/dashboard'>Dashboard</Link></li>
+                    <li className='px-4 py-3 text-xl'><button onClick={logout}>Logout</button></li>
                   </>
                 ) : (
                   <li className='px-4 py-3 text-white text-xl'><Link to='/admin/login'>Login</Link></li>

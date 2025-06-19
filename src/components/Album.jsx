@@ -1,56 +1,115 @@
+// import { Link } from "react-router-dom";
+// import { useImageFetchingContextHook } from "../contextApi/ImageFetchingProvider";
+
+
+// const Album = () => {
+//   const { albumsData } = useImageFetchingContextHook();
+
+//   return (
+//     <>
+//       <div className="w-full min-h-screen pt-8 pb-28">
+
+//         <div className="inline-flex items-center justify-center w-full">
+//           <hr className="w-[70%] h-px my-8 bg-gray-300 border-0" />
+//           <span className="text-lg h-1 absolute px-7 font-normal text-gray-900 -translate-x-1/2 bg-white left-1/2"></span>
+//         </div>
+
+//         <h2 className="text-center text-[#000] pb-2 text-xl md:text-2xl lg:text-4xl tracking-wider font-playfair font-thin italic">
+//           Our Wedding Stories in Timeless Frames
+//         </h2>
+
+//          <div className="inline-flex items-center justify-center w-full">
+//           <hr className="w-[70%] h-px my-8 bg-gray-300 border-0" />
+//           <span className="text-lg h-1 absolute px-7 font-normal text-gray-900 -translate-x-1/2 bg-white left-1/2"></span>
+//         </div>
+
+//         <div className="h-full px-40 grid grid-cols-3 gap-14 mt-7">
+//           {albumsData?.slice(0, 5).map((src, index) => (
+//             <div
+//               key={index}
+//               className={`hover:scale-105 transition-transform cursor-pointer}`}
+//             >
+//               <Link to={`albums/${src._id}`}>
+//                 <img src={src?.coverImg?.imgUrl} alt="" className="object-cover" />
+//                 <div className="py-2">Welcome to the wedding album</div>
+//               </Link>
+//             </div>
+//           ))}
+//         </div>
+
+//         <div className="text-center mt-40">
+//           <Link
+//             to="/albums"
+//             className="px-4 py-2 border border-gray-900 hover:bg-gray-900 hover:text-white duration-300"
+//           >
+//             View All Albums
+//           </Link>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Album;
+
 
 
 import { Link } from "react-router-dom";
 import { useImageFetchingContextHook } from "../contextApi/ImageFetchingProvider";
 
-const gridHeight = [
-  "w-full h-full col-span-1",
-  "w-full h-[70%] col-span-1 row-span-2",
-  "w-full h-full col-span-1",
-  "w-full h-full col-span-1",
-  "w-full h-full col-span-1",
-];
-
 const Album = () => {
   const { albumsData } = useImageFetchingContextHook();
-  console.log(albumsData);
+
   return (
     <>
-      <div className="w-full min-h-screen pt-8 pb-28">
-        {/* <h1 className="text-3xl font-bold text-center">
-          <span className="px-10 py-2 border-b border-b-black">Albums</span>
-        </h1> */}
+      <div className="w-full min-h-screen pt-8 pb-28 px-4 sm:px-8 md:px-12 lg:px-20">
 
-        <h2 className="text-center pt-10 pb-20 text-xl md:text-2xl lg:text-4xl tracking-wider">
-        Our Wedding Story in Timeless Frames
+        <div className="inline-flex items-center justify-center w-full relative">
+          <hr className="w-[70%] h-px my-8 bg-gray-300 border-0" />
+          <span className="text-lg h-1 absolute px-7 font-normal text-gray-900 -translate-x-1/2 bg-white left-1/2"></span>
+        </div>
+
+        <h2 className="text-center text-[#000] pb-2 text-xl sm:text-2xl lg:text-4xl tracking-wider font-playfair font-thin italic">
+          Our Wedding Stories in Timeless Frames
         </h2>
-        <div className="h-full px-24 grid grid-cols-3 grid-rows-2 gap-24">
+
+        <div className="inline-flex items-center justify-center w-full relative">
+          <hr className="w-[70%] h-px my-8 bg-gray-300 border-0" />
+          <span className="text-lg h-1 absolute px-7 font-normal text-gray-900 -translate-x-1/2 bg-white left-1/2"></span>
+        </div>
+
+        <div className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mt-7">
           {albumsData?.slice(0, 5).map((src, index) => (
             <div
               key={index}
-              className={`hover:scale-105 transition-transform cursor-pointer ${
-                gridHeight[index % gridHeight.length]
-              } }`}
+              className="hover:scale-105 transition-transform cursor-pointer"
             >
               <Link to={`albums/${src._id}`}>
-              <img
-                src={src?.coverImg?.imgUrl}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-              <div className="py-6">Welcome to the wedding album</div>
+                <img
+                  src={src?.coverImg?.imgUrl}
+                  alt=""
+                  className="object-cover w-full h-60 sm:h-72 lg:h-80 rounded-md"
+                />
+                <div className="py-2 text-center text-sm sm:text-base">
+                  Welcome to the wedding album
+                </div>
               </Link>
             </div>
           ))}
         </div>
-          
-          <div className="text-center mt-40">
-              <Link to="/albums" className="px-10 py-3 bg-[#e57373] text-white text-xl">View All Albums</Link>
-          </div>
-     
+
+        <div className="text-center mt-20">
+          <Link
+            to="/albums"
+            className="px-4 py-2 border border-gray-900 hover:bg-gray-900 hover:text-white duration-300"
+          >
+            View All Albums
+          </Link>
+        </div>
       </div>
     </>
   );
 };
 
 export default Album;
+

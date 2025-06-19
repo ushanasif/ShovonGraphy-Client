@@ -32,7 +32,7 @@ const AuthContextProvider = ({ children }) => {
         return true;
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data.message);
       return false;
     }
   };
@@ -65,6 +65,7 @@ const AuthContextProvider = ({ children }) => {
       });
       if (response?.status === 200) {
         setAccessToken(response?.data?.accessToken);
+        setIsLoggedIn(true);
       }
     } catch (error) {
       if (error.response.status === 401) {
@@ -88,10 +89,13 @@ const AuthContextProvider = ({ children }) => {
 
  useEffect(() => {
     const initializeAuth = async () => {
+      setLoading(true)
       try {
         await refreshAccessToken();
       } catch (error) {
           return null;
+      }finally{
+        setLoading(false);
       }
     };
     initializeAuth();
@@ -112,6 +116,7 @@ const AuthContextProvider = ({ children }) => {
         fetchAdminDetails,
         setUser,
         getAccessToken,
+        isLoggedIn,
         loading,
       }}
     >

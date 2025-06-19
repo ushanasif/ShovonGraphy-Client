@@ -5,7 +5,7 @@
 
 @layer components{
     .menu-list{
-        @apply hover:text-[#b48b3c] mb-1 text-xl;
+        @apply hover:text-[#ccaf3d] mb-1 text-lg font-normal;
     }
 }
 

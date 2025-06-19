@@ -24,11 +24,11 @@ const About = () => {
     // </div>
 
     <>
-    <div className="min-h-screen container mx-auto mt-16">
+    <div className="min-h-screen bg-white container mx-auto mt-32">
       <div className="w-full flex px-8">
         <div className="flex flex-col gap-10 items-center basis-[48%] pr-12">
-          <div className="text-left">
-            <p className="font-bold italic text-xl text-[#c7a873]">ShovonGraphy</p>
+          <div className="text-left font-playfair">
+            <p className="font-bold italic text-xl text-[#ccaf3d]">ShovonGraphy</p>
             <p className="text-4xl tracking-widest">Exclusive Photography & Cinematography </p>
           </div>
 

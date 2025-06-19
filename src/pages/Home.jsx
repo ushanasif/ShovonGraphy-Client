@@ -14,7 +14,7 @@ const Home = () => {
       <Slider />
       <About />
       <Album />
-      <ImageCollage />
+      {/* <ImageCollage /> */}
       <ImageGallery />
       <Follow />
     </>

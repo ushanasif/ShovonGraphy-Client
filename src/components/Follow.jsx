@@ -1,22 +1,38 @@
-
 import { FaInstagram } from "react-icons/fa";
-import { FiFacebook} from "react-icons/fi";
+import { FiFacebook } from "react-icons/fi";
 
 const Follow = () => {
   return (
     <>
-        <div className="w-full py-10 bg-slate-200 my-5">
-            <div className="container mx-auto rounded-lg py-7 md:py-16 flex flex-col items-center gap-6">
-                <h2 className="uppercase text-4xl lg:text-4xl tracking-widest"><span className="">follow us on</span></h2>
-                <div className="flex justify-center gap-8 my-3">
-                  <a href="http://www.facebook.com" target="_blank"><FiFacebook className="size-[70px] md:size-20 rounded-full p-2" /></a>
-                  <a href="http://www.instagram.com" target="_blank"><FaInstagram className="size-[70px] md:size-20 rounded-full p-2" /></a>
-                  {/* <a href="http://www.youtube.com" target="_blank"><FiYoutube className="size-[75px] md:size-20 rounded-full p-2" /></a> */}
-            </div>
-            </div>
-        </div> 
-    </>
-  )
-}
+      <div className="w-full mt-20 mb-14 px-4 sm:px-6 md:px-10">
+        <div className="bg-[#eeeadd] rounded-lg">
+          <div className="container mx-auto py-10 sm:py-14 md:py-16 flex flex-col items-center gap-6">
+            <h2 className="uppercase text-2xl sm:text-3xl md:text-4xl tracking-widest text-center">
+              follow us on
+            </h2>
 
-export default Follow; 
+            <div className="flex justify-center gap-8 my-2">
+              <a
+                href="http://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FiFacebook className="text-5xl sm:text-6xl p-2 rounded-full hover:scale-110 transition-transform" />
+              </a>
+              <a
+                href="http://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram className="text-5xl sm:text-6xl p-2 rounded-full hover:scale-110 transition-transform" />
+              </a>
+              {/* Future YouTube icon can be added here */}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Follow;

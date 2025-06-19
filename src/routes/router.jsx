@@ -14,6 +14,7 @@ import AdminSingleAlbum from "../pages/Admin/AdminSingleAlbum";
 import AdminPackage from "../pages/Admin/AdminPackage";
 import AdminSlider from "../pages/Admin/AdminSlider";
 import Package from "../components/Package";
+import Protected from "./Protected";
 
 const router = createBrowserRouter([
   {
@@ -50,18 +51,24 @@ const router = createBrowserRouter([
       },
       {
         path: "admin/login",
-        element: <Login />,
+        element: <Protected>
+          <Login />
+        </Protected>,
       },
       {
         path: "admin/register",
-        element: <Register />,
+        element: <Protected>
+            <Register />
+        </Protected>,
       },
     ],
   },
 
   {
     path: "/admin/dashboard",
-    element:   <AdminDashboard />,
+    element:   <Protected>
+        <AdminDashboard />
+    </Protected>,
     children: [
       {
         path: "gallery",
