@@ -73,7 +73,7 @@ const AuthContextProvider = ({ children }) => {
       }
       return null;
     }finally{
-      isLoading(false);
+      setLoading(false);
     }
   };
 
