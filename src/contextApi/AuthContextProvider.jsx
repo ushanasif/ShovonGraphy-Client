@@ -16,7 +16,7 @@ export const getAccessToken = () => {
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const axios = useAxiosPublic();
 
@@ -89,7 +89,6 @@ const AuthContextProvider = ({ children }) => {
 
  useEffect(() => {
     const initializeAuth = async () => {
-      setLoading(true)
       try {
         await refreshAccessToken();
       } catch (error) {
@@ -120,7 +119,7 @@ const AuthContextProvider = ({ children }) => {
         loading,
       }}
     >
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
