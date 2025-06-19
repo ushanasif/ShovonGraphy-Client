@@ -6,7 +6,7 @@ const Protected = ({children}) => {
     const {isLoggedIn, loading} = useContext(AuthContext);
     const location = useLocation();
 
-    if(!isLoggedIn && loading){
+    if(loading){
         return <p>Loading...</p>
     }
 
