@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {user, handleLogout} = useContext(AuthContext);
+  const {isLoggedIn, handleLogout} = useContext(AuthContext);
   const [isDropdown, setIsDropdown] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
@@ -51,7 +51,7 @@ const Navbar = () => {
 
 
                         {
-                            user ? <> <li className='border-b border-gray-400 px-2 pr-3 py-1'><Link to="/admin/dashboard">Dashboard</Link></li>
+                            isLoggedIn ? <> <li className='border-b border-gray-400 px-2 pr-3 py-1'><Link to="/admin/dashboard">Dashboard</Link></li>
                         
                             <li className='border-b border-gray-400 px-2 pr-3 py-1'><button onClick={handleLogout}>Logout</button></li>
                             </> : <li className='border-b border-gray-400 px-2 pr-3 py-1'><Link to="/admin/login">Login</Link></li>
