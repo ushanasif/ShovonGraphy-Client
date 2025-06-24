@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar"
 const AdminDashboard = () => {
   return (
     <>
-      <div className="w-full min-h-screen relative flex">
+      <div className="w-full h-screen flex">
           <Sidebar />
           <Outlet />
       </div>

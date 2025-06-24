@@ -66,7 +66,7 @@ const Navbar = () => {
         </div>
       </nav>  */}
     
-    <nav className='bg-white w-full top-0 z-50 shadow-sm py-8'>
+    <nav className='bg-white w-full top-0 z-50 shadow-sm py-3'>
       <div className='container mx-auto flex justify-around gap-32 items-center px-4 md:px-8'>
         <Link to='/'>
           <img src={logoGolden} alt='shovongraphy' className='w-40 h-20 md:w-60 md:h-20' />

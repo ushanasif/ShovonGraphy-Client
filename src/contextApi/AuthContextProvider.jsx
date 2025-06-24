@@ -4,36 +4,36 @@ import { toast } from "react-hot-toast";
 
 export const AuthContext = createContext(null);
 
-let accessToken = null;
-
-export const setAccessToken = (token) => {
-  accessToken = token;
-};
-
-export const getAccessToken = () => {
-  return accessToken;
-};
-
 const AuthContextProvider = ({ children }) => {
+  const [accessTokenState, setAccessTokenState] = useState(null);
   const [user, setUser] = useState(null);
-  console.log('user', user);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const axios = useAxiosPublic();
+
+  const setAccessToken = (token) => {
+    setAccessTokenState(token);
+  };
+
+  const getAccessToken = () => {
+    return accessTokenState;
+  };
 
   const handleLogin = async (data) => {
     try {
       const response = await axios.post("/api/admin/login", data, {
         withCredentials: true,
       });
+
       if (response?.status === 200) {
-        setAccessToken(response?.data?.accessToken);
+        const token = response.data.accessToken;
+        setAccessToken(token);
         setIsLoggedIn(true);
         setUser(response?.data?.admin);
         return true;
       }
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error?.response?.data?.message || "Login failed");
       return false;
     }
   };
@@ -44,17 +44,19 @@ const AuthContextProvider = ({ children }) => {
         "/api/admin/logout",
         {},
         {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: { Authorization: `Bearer ${accessTokenState}` },
           withCredentials: true,
         }
       );
+
       if (response?.status === 200) {
         setAccessToken("");
         setUser(null);
+        setIsLoggedIn(false);
         return true;
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message || "Logout failed");
       return false;
     }
   };
@@ -64,42 +66,39 @@ const AuthContextProvider = ({ children }) => {
       const response = await axios.get("/api/admin/refresh-token", {
         withCredentials: true,
       });
+
       if (response?.status === 200) {
-        setAccessToken(response?.data?.accessToken);
+        const newToken = response.data.accessToken;
+        setAccessToken(newToken);
         setIsLoggedIn(true);
-        console.log(response?.data?.accessToken);
+        return newToken;
       }
     } catch (error) {
-      if (error.response.status === 401) {
-        await handleLogout();
-      }
-      console.log('Error', error.message)
-    }finally{
-      setLoading(false);
+      console.log("Refresh token failed:", error?.message);
+      setAccessToken(null);
+      setIsLoggedIn(false);
+      return null;
     }
   };
 
   const fetchAdminDetails = async () => {
     try {
       const response = await axios("/api/admin/getAdmin", {
-        headers: { Authorization: `Bearer ${accessToken}` },
+        headers: { Authorization: `Bearer ${accessTokenState}` },
         withCredentials: true,
       });
+
       setUser(response?.data?.payload);
     } catch (error) {
-        return null;
+      console.log("Fetching admin details failed");
+      return null;
     }
   };
 
- useEffect(() => {
+  useEffect(() => {
     const initializeAuth = async () => {
-      try {
-        await refreshAccessToken();
-      } catch (error) {
-          return null;
-      }finally{
-        setLoading(false);
-      }
+      await refreshAccessToken();
+      setLoading(false);
     };
     initializeAuth();
   }, []);
@@ -118,9 +117,11 @@ const AuthContextProvider = ({ children }) => {
         user,
         fetchAdminDetails,
         setUser,
+        setAccessToken,
         getAccessToken,
         isLoggedIn,
         loading,
+        refreshAccessToken
       }}
     >
       {!loading && children}

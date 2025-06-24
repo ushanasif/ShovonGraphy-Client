@@ -1,81 +1,65 @@
-import axios from 'axios';
-import { getAccessToken, setAccessToken } from '../contextApi/AuthContextProvider';
+import axios from "axios";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../contextApi/AuthContextProvider";
 
+const useAxiosSecure = () => {
+  const { getAccessToken, setAccessToken, refreshAccessToken, handleLogout } = useContext(AuthContext);
+  const axiosSecureRef = useRef(null);
 
-const apiSecure = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
-  withCredentials: true,
-});
+  if (!axiosSecureRef.current) {
+    axiosSecureRef.current = axios.create({
+      baseURL: import.meta.env.VITE_BACKEND_URL,
+      withCredentials: true,
+    });
+  }
 
-// REQUEST INTERCEPTOR
-apiSecure.interceptors.request.use(
-  (config) => {
-    const accessToken = getAccessToken();
-    if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+  const axiosSecure = axiosSecureRef.current;
 
-// RESPONSE INTERCEPTOR FOR TOKEN REFRESH
-let isRefreshing = false;
-let failedQueue = [];
+  useEffect(() => {
+    console.log("🔁 Interceptors registered");
 
-const processQueue = (error, token = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) {
-      prom.reject(error);
-    } else {
-      prom.resolve(token);
-    }
-  });
-  failedQueue = [];
+    const requestInterceptor = axiosSecure.interceptors.request.use(
+      (config) => {
+        const token = getAccessToken();
+        console.log("🔐 Sending token:", token);
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
+    const responseInterceptor = axiosSecure.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+
+          try {
+            const newToken = await refreshAccessToken();
+            setAccessToken(newToken);
+            originalRequest.headers.Authorization = `Bearer ${newToken}`;
+            return axiosSecure(originalRequest);
+          } catch (err) {
+            await handleLogout();
+            return Promise.reject(err);
+          }
+        }
+
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axiosSecure.interceptors.request.eject(requestInterceptor);
+      axiosSecure.interceptors.response.eject(responseInterceptor);
+    };
+  }, [getAccessToken, refreshAccessToken, handleLogout]);
+
+  return axiosSecure;
 };
 
-apiSecure.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    // Only try refresh once
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({
-            resolve: (token) => {
-              originalRequest.headers['Authorization'] = `Bearer ${token}`;
-              resolve(apiSecure(originalRequest));
-            },
-            reject: (err) => reject(err),
-          });
-        });
-      }
-
-      originalRequest._retry = true;
-      isRefreshing = true;
-
-      try {
-        const res = await apiSecure.post(
-          '/api/admin/refresh-token'
-        );
-        console.log(res.data);
-        const newAccessToken = res.data.accessToken;
-        setAccessToken(newAccessToken);
-
-        processQueue(null, newAccessToken);
-        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-        return apiSecure(originalRequest);
-      } catch (refreshError) {
-        processQueue(refreshError, null);
-        return Promise.reject(refreshError);
-      } finally {
-        isRefreshing = false;
-      }
-    }
-
-    return Promise.reject(error);
-  }
-);
-
-export default apiSecure;
+export default useAxiosSecure;

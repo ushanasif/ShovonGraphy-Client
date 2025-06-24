@@ -25,7 +25,7 @@ const About = () => {
 
     <>
     <div className="min-h-screen bg-white container mx-auto mt-32">
-      <div className="w-full flex px-8">
+      <div className="w-full flex px-8 py-8">
         <div className="flex flex-col gap-10 items-center basis-[48%] pr-12">
           <div className="text-left font-playfair">
             <p className="font-bold italic text-xl text-[#ccaf3d]">ShovonGraphy</p>

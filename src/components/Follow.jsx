@@ -5,7 +5,7 @@ const Follow = () => {
   return (
     <>
       <div className="w-full mt-20 mb-14 px-4 sm:px-6 md:px-10">
-        <div className="bg-[#eeeadd] rounded-lg">
+        <div className="bg-white rounded-lg border">
           <div className="container mx-auto py-10 sm:py-14 md:py-16 flex flex-col items-center gap-6">
             <h2 className="uppercase text-2xl sm:text-3xl md:text-4xl tracking-widest text-center">
               follow us on

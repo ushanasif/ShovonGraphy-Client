@@ -17,10 +17,10 @@ const Sidebar = () => {
           <hr className="border-gray-400 mt-5 ml-1"/>
           <ul className="space-y-10 mt-6">
               <li><Link to={"/"} className="flex flex-col items-center justify-center gap-3"><span><FiHome className="text-2xl"/></span><span className="text-xl">Home</span></Link></li>
-              <li><Link to={"/admin/dashboard/slider"} className="flex flex-col items-center justify-center gap-3"><span><FiHome className="text-2xl"/></span><span className="text-xl">Slider</span></Link></li>
-              <li><Link to={"/admin/dashboard/gallery"} className="flex flex-col items-center justify-center gap-3"><span><LuGalleryHorizontalEnd className="text-white text-2xl" /></span><span className="text-xl">Gallery</span></Link></li>
-              <li><Link to={"/admin/dashboard/albums"} className="flex flex-col items-center justify-center gap-3"><span><LuDiscAlbum className="text-2xl" /></span><span className="text-xl">Albums</span></Link></li>
-              <li><Link to={"/admin/dashboard/package"} className="flex flex-col items-center justify-center gap-3"><span><LuBoxes className="text-2xl" /></span><span className="text-xl">Packages</span></Link></li>
+              <li><Link to={"slider"} className="flex flex-col items-center justify-center gap-3"><span><FiHome className="text-2xl"/></span><span className="text-xl">Slider</span></Link></li>
+              <li><Link to={"gallery"} className="flex flex-col items-center justify-center gap-3"><span><LuGalleryHorizontalEnd className="text-white text-2xl" /></span><span className="text-xl">Gallery</span></Link></li>
+              <li><Link to={"albums"} className="flex flex-col items-center justify-center gap-3"><span><LuDiscAlbum className="text-2xl" /></span><span className="text-xl">Albums</span></Link></li>
+              <li><Link to={"package"} className="flex flex-col items-center justify-center gap-3"><span><LuBoxes className="text-2xl" /></span><span className="text-xl">Packages</span></Link></li>
           </ul>
 
           

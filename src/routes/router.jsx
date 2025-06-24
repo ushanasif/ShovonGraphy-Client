@@ -15,6 +15,8 @@ import AdminPackage from "../pages/Admin/AdminPackage";
 import AdminSlider from "../pages/Admin/AdminSlider";
 import Package from "../components/Package";
 import Protected from "./Protected";
+import AdminHome from "../pages/Admin/AdminHome";
+import SingleAlbumImages from "../pages/SingleAlbumImages";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "albums/:id",
-        element: <AdminSingleAlbum />,
+        element: <SingleAlbumImages />,
       },
       {
         path: "packages",
@@ -70,6 +72,10 @@ const router = createBrowserRouter([
         <AdminDashboard />
     </Protected>,
     children: [
+      {
+        path: '',
+        element: <AdminHome />
+      },
       {
         path: "gallery",
         element: <AdminGallery />,
