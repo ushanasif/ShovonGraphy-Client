@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Package = () => {
   return (
     <>
-     <div className="bg-white w-full min-h-screen relative pt-20 pb-28">
+     <div className="w-full min-h-screen relative pt-20 pb-28">
       {/* Section Title */}
       <div className="flex items-center px-6 md:px-20 lg:px-40 gap-4 justify-center mb-10">
         <div className="flex-grow border-t border-gray-400"></div>
